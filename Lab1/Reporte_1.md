@@ -32,3 +32,21 @@ diccionario = {"nombre": "Juan", "edad": 22}
 
 # Imprimir variables
 print(entero, flotante, cadena, booleano, lista, tupla, diccionario)
+
+Estructuras de Control en Python
+Las estructuras de control permiten ejecutar bloques de código según condiciones específicas o repetir instrucciones.
+
+Condiciones: if, elif, else
+Las estructuras condicionales permiten ejecutar código en función de una evaluación lógica.
+
+python
+Copiar
+Editar
+edad = 18
+if edad >= 18:
+    print("Eres mayor de edad")
+elif edad > 12:
+    print("Eres un adolescente")
+else:
+    print("Eres un niño")
+En este caso, el programa evalúa la variable edad y ejecuta el bloque correspondiente según el valor.
