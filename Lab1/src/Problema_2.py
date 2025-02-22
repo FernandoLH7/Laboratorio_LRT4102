@@ -1,4 +1,11 @@
-n1 = int(input("Introduce tu número de horas: "))
-n2 = int(input("Introduce el costo por hora: "))
-pago = n1*n2
-print("El pago por", n1, "horas de trabajo es:", pago)
+class Numer:
+    def __init__(self):
+        self.horas = int(input("Ingresa el número de horas que has trabajado: "))
+        self.costo = int(input("Ingrese el costo de cada hora trabajada: "))
+
+    def calcular(self):
+        salario = self.horas * self.costo
+        print ("El salario que te corresponde es de: ", salario,"$")
+
+paga = Numer()
+paga.calcular()
