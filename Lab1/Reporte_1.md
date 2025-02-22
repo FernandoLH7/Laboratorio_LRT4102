@@ -39,9 +39,6 @@ Las estructuras de control permiten ejecutar bloques de código según condicion
 Condiciones: if, elif, else
 Las estructuras condicionales permiten ejecutar código en función de una evaluación lógica.
 
-python
-Copiar
-Editar
 edad = 18
 if edad >= 18:
     print("Eres mayor de edad")
