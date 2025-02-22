@@ -32,7 +32,7 @@ diccionario = {"nombre": "Juan", "edad": 22}
 
 # Imprimir variables
 print(entero, flotante, cadena, booleano, lista, tupla, diccionario)
-Estructuras de Control en Python
+#### *Estructuras de Control en Python*
 Las estructuras de control permiten ejecutar bloques de código según condiciones específicas o repetir instrucciones.
 
 Condiciones: if, elif, else
