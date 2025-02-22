@@ -1,5 +1,4 @@
 # Introducción a Python
-
 Python es un lenguaje de programación interpretado, de alto nivel y de propósito general, diseñado con un enfoque en la simplicidad y legibilidad del código (Van Rossum, 1991). Su sintaxis clara permite que sea ampliamente utilizado en múltiples áreas como desarrollo web, ciencia de datos, automatización, inteligencia artificial y sistemas embebidos.
 
 Python es un *lenguaje multiparadigma, lo que significa que admite diferentes estilos de programación, como **programación estructurada, funcional y orientada a objetos (POO)*. Además, cuenta con una gran cantidad de bibliotecas y módulos que facilitan su uso en diversas aplicaciones.
@@ -32,6 +31,7 @@ diccionario = {"nombre": "Juan", "edad": 22}
 
 # Imprimir variables
 print(entero, flotante, cadena, booleano, lista, tupla, diccionario)
+```
 
 Estructuras de Control en Python
 Las estructuras de control
