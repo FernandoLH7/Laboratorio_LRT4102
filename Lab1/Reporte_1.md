@@ -498,7 +498,25 @@ juego = AdivinarNumero()
 juego.jugar()
 ```
 ### *Descripción código*
+Este programa implementa un juego de adivinanza de un número secreto utilizando Programación Orientada a Objetos (POO) en Python. A través de la clase AdivinarNumero, se genera un número aleatorio entre 1 y 10 y se le solicita al usuario que intente adivinarlo, proporcionando pistas hasta que lo logre.
 
+- Generación del número aleatorio:
+
+    - Al crear una instancia de la clase AdivinarNumero, el constructor _init_() genera un número secreto utilizando randint(1,10).
+    - Este número se almacena en el atributo self.numero_aleatorio.
+
+- Método jugar()
+
+    - Inicia un bucle while infinito, en el que el usuario debe ingresar un número.
+    - Se lleva un contador de intentos (intentos) que se incrementa en cada intento.
+    - El número ingresado por el usuario se convierte en entero (int(input())).
+
+- Verificación del número ingresado
+
+    - Si el número del usuario es mayor al número secreto, se muestra "El número está por debajo del que diste".
+    - Si es menor, se muestra "El número está por arriba del que diste".
+    - Si el usuario adivina el número, el programa muestra "¡Felicidades! Adivinaste el número secreto en X intentos." y el bucle se detiene con break.
+    - Si el usuario ingresa un valor no numérico, el programa muestra "Por favor ingrese un número válido" gracias al bloque try-except.
 ---
 
 ## *Problema 6: Robot explorador en una matriz*
