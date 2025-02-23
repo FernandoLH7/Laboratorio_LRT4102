@@ -48,3 +48,38 @@ else:
     print("Eres un niño")
 ```
 En este caso, el programa evalúa la variable edad y ejecuta el bloque correspondiente según el valor.
+
+### *Bucles en Python*
+Python ofrece dos estructuras principales de repetición: for y while.
+
+### *Bucle for*
+El bucle for se usa para iterar sobre secuencias como listas, tuplas o cadenas.
+
+```python
+# Iterar sobre una lista
+frutas = ["Manzana", "Banana", "Cereza"]
+for fruta in frutas:
+    print(fruta)
+
+# Iterar usando range()
+for i in range(5):  # Itera de 0 a 4
+    print("Número:", i)
+```
+### *Bucle while*
+El bucle while se ejecuta mientras una condición sea verdadera.
+```python
+contador = 0
+while contador < 5:
+    print("Contador:", contador)
+    contador += 1
+```
+## *Funciones en python*
+Las funciones permiten encapsular código reutilizable. En Python, se definen con la palabra clave def.
+
+```python
+def saludar(nombre):
+    return f"Hola, {nombre}!"
+
+print(saludar("Juan"))  # Salida: Hola, Juan!
+```
+Como se puede observar anteriormente, python es un lenguaje versátil y fácil de aprender, lo que lo hace ideal para principiantes y profesionales. Sus estructuras de control, tipos de datos y paradigmas de programación permiten desarrollar soluciones eficientes para diferentes problemas.
