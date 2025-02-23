@@ -84,6 +84,31 @@ print(saludar("Juan"))  # Salida: Hola, Juan!
 ```
 Como se puede observar anteriormente, python es un lenguaje versátil y fácil de aprender, lo que lo hace ideal para principiantes y profesionales. Sus estructuras de control, tipos de datos y paradigmas de programación permiten desarrollar soluciones eficientes para diferentes problemas.
 
+# Programación Orientada a Objetos (POO) en Python
+
+La *Programación Orientada a Objetos (POO)* es un paradigma de programación que se basa en la construcción de *objetos* que contienen datos (atributos) y comportamientos (métodos). Este enfoque permite modelar problemas del mundo real de una manera más estructurada y modular (Booch, 1994).
+
+Python es un lenguaje que soporta POO de manera nativa, permitiendo a los desarrolladores estructurar su código de forma eficiente y reutilizable (Van Rossum, 1991). En este paradigma, el código se organiza en *clases y objetos, aplicando principios como **encapsulamiento, herencia y polimorfismo* para mejorar la reutilización y mantenimiento del software (Lutz, 2013).
+
+---
+
+## *1. Clases y Objetos*
+Una *clase* es una plantilla para crear objetos, y un *objeto* es una instancia de una clase con atributos y métodos propios.
+
+```python
+class Persona:
+    def _init_(self, nombre, edad):
+        self.nombre = nombre  # Atributo
+        self.edad = edad      # Atributo
+
+    def saludar(self):
+        """Método para saludar."""
+        return f"Hola, soy {self.nombre} y tengo {self.edad} años."
+
+# Crear un objeto de la clase Persona
+persona1 = Persona("Carlos", 22)
+print(persona1.saludar())  # Salida: Hola, soy Carlos y tengo 22 años.
+
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
 - Van Rossum, G. (1991). Python programming language. Python Software Foundation.
