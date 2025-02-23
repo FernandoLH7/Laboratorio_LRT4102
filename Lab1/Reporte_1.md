@@ -660,7 +660,56 @@ class RobotExplorador:
 RobotExplorador()
 ```
 ### *Descripción código*
+Este programa implementa un robot explorador en una matriz, que debe encontrar un camino desde la posición inicial (0,0) hasta la meta en (n-1, n-1), esquivando obstáculos generados aleatoriamente. Se utiliza Programación Orientada a Objetos (POO) en Python para estructurar la solución, encapsulando toda la lógica dentro de la clase RobotExplorador.
 
+- Inicialización del robot y el mapa:
+
+    - Se define una matriz n x n con espacios vacíos ('o'), donde n es el tamaño del mapa (por defecto 5x5).
+    - Se establece la posición inicial del robot en (0,0).
+    - Se define la posición de la meta en (n-1, n-1).
+    - Se inicializa una lista camino para registrar las posiciones visitadas por el robot.
+
+- Generación de obstáculos aleatorios
+
+    - Se colocan de n a 2n obstáculos ('X') en posiciones aleatorias dentro de la matriz.
+    - Se asegura que ni la posición inicial ni la meta sean bloqueadas.
+
+- Búsqueda del camino
+
+    - El robot comienza en (0,0) y trata de moverse en la dirección predeterminada (derecha).
+    - Puede desplazarse en cuatro direcciones (→ ↓ ← ↑) según la disponibilidad del camino.
+    - Si encuentra un obstáculo, gira en sentido horario hasta encontrar un camino libre.
+    - Si queda atrapado sin salida, el programa imprime "Imposible llegar al destino" y finaliza.
+    - Si alcanza la meta, se imprimen:
+
+        - El mapa del terreno con los obstáculos y los espacios libres.
+        - El mapa con la ruta seguida, representada con flechas (→ ↓ ← ↑).
+
+Ahora se explica brevemente cada uno de los métodos que se implementaron en el código para entender su función dentro de la solución al problema dado.
+
+- Método generar_obstaculos()
+
+    - Coloca obstáculos aleatorios sin bloquear la entrada o la salida.
+
+- Método encontrar_camino()
+
+    - Aplica la lógica de navegación del robot, moviéndolo hasta la meta o detectando si queda atrapado.
+
+- Método movimiento_valido(x, y)
+
+    - Verifica si la posición (x, y) es válida y no contiene un obstáculo.
+
+- Método girar_derecha()
+
+    - Cambia la dirección de movimiento del robot en sentido horario.
+
+- Método imprimir_mapa()
+
+    - Imprime el mapa con los obstáculos ('X') y los espacios libres ('o').
+
+- Método mostrar_ruta()
+
+    - Imprime el camino recorrido por el robot con flechas (→ ↓ ← ↑) indicando la trayectoria.
 ---
 
 ## *Problema 7: Gestión de inventario de una tienda*
