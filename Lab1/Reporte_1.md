@@ -200,9 +200,7 @@ class Suma:
         # El constructor __init__ se llama automáticamente al crear una instancia de la clase Suma.
         # Aquí pedimos al usuario que ingrese un número y lo convertimos a entero.
         self.numero_aleatorio = int(input("¿Cual es el número?: "))
-
-    def sumar(self):
-        # El método sumar calcula la suma de todos los números desde 1 hasta numero_aleatorio.
+la la suma de todos los números desde 1 hasta numero_aleatorio.
         # Utiliza la fórmula de la suma de los primeros n números naturales: n(n + 1)/2.
         suma = (self.numero_aleatorio * (self.numero_aleatorio + 1)) / 2
         # Imprime el resultado de la suma.
@@ -210,7 +208,9 @@ class Suma:
 
 # Creamos una instancia de la clase Suma, lo que llama al constructor __init__.
 resultado = Suma()
-# Llamamos al método sumar de la instancia resultado para realizar el cálculo e imprimir el resultado.
+# Llamamos al método sumar de 
+    def sumar(self):
+        # El método sumar calcula instancia resultado para realizar el cálculo e imprimir el resultado.
 resultado.sumar()
 ```
 ### *Descripción código*
@@ -219,9 +219,11 @@ Este programa implementa la suma de los primeros n números enteros positivos ut
 
 - Entrada de datos: Al crear una instancia de la clase, el constructor _init_ solicita al usuario un número entero (n).
 - Cálculo de la suma: La operación se realiza dentro del método sumar(), utilizando la fórmula matemática: 
-$$ 
-\text{suma} = \frac{n(n+1)}{2} 
-$$ 
+
+$$
+\text{suma} = \frac{n(n+1)}{2}
+$$
+
 - Salida: El resultado se imprime en pantalla mostrando la suma de todos los números desde 1 hasta n.
 
 ---
