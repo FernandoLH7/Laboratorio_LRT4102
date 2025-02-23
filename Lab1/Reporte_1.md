@@ -232,6 +232,8 @@ Si el robot *no puede salir*, debe imprimir en pantalla: "Imposible llegar al de
 
 Si el robot *llega a su destino*, deberá imprimir el mapa con los espacios libres y obstáculos de la siguiente forma (X para obstáculos y o para espacios libres). Deberá imprimir también la ruta que siguió y deberá mostrar un segundo mapa con el "camino" seguido por el robot mediante flechas
 
+---
+
 ## *Problema 7: Gestión de inventario de una tienda*
 Una tienda quiere gestionar su inventario de productos. Para ello, debes implementar un sistema 
 en Python que permita: 
@@ -239,6 +241,8 @@ en Python que permita:
 - Actualizar la cantidad en stock cuando se venden productos. 
 - Mostrar la información de un producto con su disponibilidad. 
 - Calcular el valor total del inventario (precio × cantidad de cada producto).
+
+---
 
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
