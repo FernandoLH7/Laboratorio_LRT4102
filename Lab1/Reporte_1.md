@@ -108,6 +108,7 @@ class Persona:
 # Crear un objeto de la clase Persona
 persona1 = Persona("Carlos", 22)
 print(persona1.saludar())  # Salida: Hola, soy Carlos y tengo 22 años.
+```
 
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
