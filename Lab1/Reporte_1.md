@@ -418,6 +418,37 @@ print("Números impares:", impares)
 print("Promedio pares:", prom)
 print("Producto impares:", prod)
 ```
+### *Descripción código*
+
+Este programa permite analizar una lista de números enteros y obtener información relevante sobre ellos, como la separación en números pares e impares, el cálculo del promedio de los pares y el producto de los impares. Se implementa utilizando Programación Orientada a Objetos (POO) para encapsular la funcionalidad en una clase llamada Numeros.
+
+- Inicialización de la clase Numeros:
+
+    - Se define un constructor _init_() que recibe una lista de números y la almacena en una variable de instancia.
+
+- Método obtener_numeros_pares_impares()
+
+    - Recorre la lista original y clasifica los números en pares e impares.
+    - Retorna dos listas separadas: una con los pares y otra con los impares.
+
+- Método calcular_promedio()
+
+    - Obtiene la lista de números pares llamando a obtener_numeros_pares_impares().
+    - Calcula el promedio sumando todos los pares y dividiéndolos por la cantidad de elementos en la lista.
+    - Si la lista de pares está vacía, retorna 0 para evitar errores de división por cero.
+
+- Método calcular_producto()
+
+    - Obtiene la lista de números impares llamando a obtener_numeros_pares_impares().
+    - Utiliza math.prod() para calcular el producto de los números impares.
+    - Si no hay impares, retorna 0 para evitar errores.
+
+- Ejecución del programa
+
+    - Se define una lista con los números del 1 al 10.
+    - Se crea una instancia de la clase Numeros con esa lista.
+    - Se llaman los métodos para obtener los pares, impares, el promedio de los pares y el producto de los impares.
+    - Finalmente, los resultados se imprimen en pantalla.
 ---
 
 ## *Problema 5: Adivinanza de un número secreto*
