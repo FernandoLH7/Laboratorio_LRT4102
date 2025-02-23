@@ -255,6 +255,8 @@ paga = Numer()
 # Llamamos al método calcular de la instancia paga para realizar el cálculo e imprimir el resultado.
 paga.calcular()
 ```
+### *Descripción código*
+
 Este programa calcula el salario de un trabajador en función de las horas trabajadas y el costo por hora, utilizando Programación Orientada a Objetos (POO) en Python.
 
 - Entrada de datos: La clase Numer solicita al usuario el número de horas trabajadas y el costo por hora mediante el constructor _init_(), convirtiéndolos a enteros.
