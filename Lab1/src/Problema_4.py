@@ -1,47 +1,64 @@
 import math
 
-# Como trabajaremos con programación orientada a objetos, primero debemos definir nuestra clase
-class Numeros:                #Llamamos nuestra clase Numeros
-    def __init__(self, lista):      #Inicializamos el constructor usando self y lista como atributos
-        self.lista = lista      #Asignamos el valor de lista a self de forma que con esto indicamos que self almacenará nuestra lista
+# Definimos la clase Numeros
+class Numeros:
+    def __init__(self, lista):
+        # Inicializamos el constructor con la lista proporcionada
+        self.lista = lista
 
-    def obtener_numeros_pares_impares(self):   #Creamos un nuevo metodo para difereciar entre numeros pares e impares
-        pares = []  # Inicializamos la lista de pares
-        impares = []     #Inicializamos la lista de impares
-        for num in self.lista:      #Creamos un ciclo for donde num será nuestro contador que incrementará de 1 en 1 para recorrer todos los valores en la lista
-            if num % 2 == 0:      #Establecemos que si el valor que tiene num, su residuo es 0, entonces será par
-                pares.append(num)   #Si el valor es par entonces se agregará a la lista de pares con append
+    def obtener_numeros_pares_impares(self):
+        # Inicializamos las listas de pares e impares
+        pares = []
+        impares = []
+        # Recorremos cada número en la lista
+        for num in self.lista:
+            # Verificamos si el número es par
+            if num % 2 == 0:
+                # Si es par, lo agregamos a la lista de pares
+                pares.append(num)
             else:
-                impares.append(num)   #Sino son pares, entonces se mandarán a la lista de impares
-        return pares, impares     #Regresamos pares e impares para usarlos adelante
+                # Si es impar, lo agregamos a la lista de impares
+                impares.append(num)
+        # Retornamos las listas de pares e impares
+        return pares, impares
 
     def calcular_promedio(self):
-        pares, _ = self.obtener_numeros_pares_impares()     #Como nuestro metodo obtener_numeros_pares_impares retorna dos valores y solo queremos pares, dejamos con _ a impares
-        # usamos sum() para sumar los elementos de una lista
-        # usamos len() para saber cuantos elementos tiene una lista
-        # en caso de que nuestra lista este vacia, para no dividir una cantidad entre cero que da infinito, retornamos cero
-        if len(pares) == 0:   #Nos aseguramos de que no haya una división entre cero de esta forma si la dimesión de la lista pares es de 0 se retornará cero
+        # Obtenemos los números pares usando el método anterior
+        pares, _ = self.obtener_numeros_pares_impares()
+        # Verificamos si la lista de pares está vacía para evitar división por cero
+        if len(pares) == 0:
             return 0
-        prom = sum(pares) / len(pares)    #Se obtiene el promedio de la suma de los valores en la lista entre el numero de elementos
-        return prom    #Retornamos el promedio
+        # Calculamos el promedio de los números pares
+        prom = sum(pares) / len(pares)
+        # Retornamos el promedio calculado
+        return prom
 
     def calcular_producto(self):
-        _, impares = self.obtener_numeros_pares_impares()    #Como antes, ahora usamos impares y no pares
-        if len(impares) == 0: # Nuevamente evitamos dividir en cero
+        # Obtenemos los números impares usando el método anterior
+        _, impares = self.obtener_numeros_pares_impares()
+        # Verificamos si la lista de impares está vacía para evitar errores
+        if len(impares) == 0:
             return 0
-        prod = math.prod(impares) #Usamos la biblioteca math con la función prod para sacar el producto de los componentes de la lista
+        # Calculamos el producto de los números impares usando math.prod
+        prod = math.prod(impares)
+        # Retornamos el producto calculado
         return prod
 
-numeros_lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]    #Esta es nuestra lista del 1 al 10
-numeros_objeto = Numeros(numeros_lista)      # Aignamos esta lista a nuestra clase Numeros y posteriormente esta se asignara a self
+# Definimos una lista de números del 1 al 10
+numeros_lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Creamos una instancia de la clase Numeros con la lista proporcionada
+numeros_objeto = Numeros(numeros_lista)
 
-pares, impares = numeros_objeto.obtener_numeros_pares_impares()   #Generamos nuestras variables con el reusltadoa  imprimir
+# Obtenemos los números pares e impares
+pares, impares = numeros_objeto.obtener_numeros_pares_impares()
+# Calculamos el promedio de los números pares
 prom = numeros_objeto.calcular_promedio()
+# Calculamos el producto de los números impares
 prod = numeros_objeto.calcular_producto()
 
-print("Lista original:", numeros_objeto.lista) #Impirmimos los resultados
+# Imprimimos la lista original y los resultados obtenidos
+print("Lista original:", numeros_objeto.lista)
 print("Números pares:", pares)
-
 print("Números impares:", impares)
 print("Promedio pares:", prom)
 print("Producto impares:", prod)
