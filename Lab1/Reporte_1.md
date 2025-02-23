@@ -737,7 +737,8 @@ class Supermercado:
     - Se define la clase Supermercado, que representa el sistema de inventario.
     - self.productos = {}: Se inicializa un diccionario vacío para almacenar los productos. Cada producto tendrá su nombre como clave y un diccionario interno con su precio y cantidad en stock.
     - self.ejecutar_menu(): Llama automáticamente al método ejecutar_menu(), mostrando el menú de opciones cuando se inicia el programa.
-    
+
+- Método mostrar_menu(): Mostrar Opciones Disponibles
 ```python
     def mostrar_menu(self):
         """Muestra las opciones disponibles en el menú."""
@@ -747,6 +748,13 @@ class Supermercado:
               "\n 3. Información de un producto"
               "\n 4. Valor total del inventario"
               "\n 5. Salir")
+```
+- Explicación:
+    - Muestra un menú con las opciones disponibles para el usuario.
+    - No tiene entradas ni salidas, simplemente imprime el menú en pantalla.
+
+- Método ejecutar_menu(): Control del Flujo Principal
+```python
 
     def ejecutar_menu(self):
         """Ejecuta el menú en un bucle hasta que el usuario elija salir."""
