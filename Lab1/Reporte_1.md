@@ -155,7 +155,7 @@ perro1 = Perro("Rex")
 print(perro1.nombre)          # Salida: Rex
 print(perro1.hacer_sonido())  # Salida: Ladra
 ```
-La clase Perro hereda de Animal, reutilizando su estructura y sobrescribiendo el método hacer_sonido().
+- La clase Perro hereda de Animal, reutilizando su estructura y sobrescribiendo el método hacer_sonido().
 
 ## *4. Polimorfismo*
 El polimorfismo permite que diferentes clases usen el mismo método con diferentes implementaciones. Esto mejora la flexibilidad y reutilización del código.
