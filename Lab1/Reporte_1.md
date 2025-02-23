@@ -132,6 +132,10 @@ cuenta = CuentaBancaria(1000)
 cuenta.depositar(500)
 print(cuenta.obtener_saldo())  # Salida: 1500
 ```
+- Los atributos privados (__saldo) solo pueden ser modificados dentro de la clase.
+- El acceso a datos se realiza mediante métodos específicos (obtener_saldo()).
+
+## *3. Herencia*
 
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
