@@ -1,8 +1,8 @@
 class Supermercado:
     def __init__(self):
         """Inicializa el supermercado con un diccionario para almacenar los productos y ejecuta el menú."""
-        self.productos = {}
-        self.ejecutar_menu()
+        self.productos = {}  # Diccionario para almacenar los productos
+        self.ejecutar_menu()  # Ejecuta el menú al iniciar la clase
 
     def mostrar_menu(self):
         """Muestra las opciones disponibles en el menú."""
@@ -16,63 +16,63 @@ class Supermercado:
     def ejecutar_menu(self):
         """Ejecuta el menú en un bucle hasta que el usuario elija salir."""
         while True:
-            self.mostrar_menu()
+            self.mostrar_menu()  # Muestra el menú de opciones
             try:
-                opcion = int(input("¿Cuál es la opción que eliges?: "))
+                opcion = int(input("¿Cuál es la opción que eliges?: "))  # Solicita al usuario que elija una opción
                 if opcion == 1:
-                    self.agregar_producto()
+                    self.agregar_producto()  # Llama al método para agregar un producto
                 elif opcion == 2:
-                    self.vender_producto()
+                    self.vender_producto()  # Llama al método para vender un producto
                 elif opcion == 3:
-                    self.mostrar_producto()
+                    self.mostrar_producto()  # Llama al método para mostrar información de un producto
                 elif opcion == 4:
-                    self.valor_inventario()
+                    self.valor_inventario()  # Llama al método para calcular el valor total del inventario
                 elif opcion == 5:
-                    print("Saliendo del programa...")
-                    break
+                    print("Saliendo del programa...")  # Mensaje de salida
+                    break  # Sale del bucle y termina el programa
                 else:
-                    print("Opción no válida, intenta de nuevo.")
+                    print("Opción no válida, intenta de nuevo.")  # Mensaje de opción no válida
             except ValueError:
-                print("Error: Ingresa un número válido.")
+                print("Error: Ingresa un número válido.")  # Mensaje de error si la entrada no es un número
 
     def agregar_producto(self):
         """Añade un nuevo producto con nombre, precio y cantidad al inventario."""
-        nombre = input("Nombre del producto: ").lower()
+        nombre = input("Nombre del producto: ").lower()  # Solicita el nombre del producto y lo convierte a minúsculas
         if nombre in self.productos:
             print(f"El producto '{nombre}' ya existe. Usa la opción de venta para reducir stock.")
-            return
+            return  # Si el producto ya existe, muestra un mensaje y termina el método
         try:
-            precio = float(input("Precio del producto: "))
-            cantidad = int(input("Cantidad en stock: "))
+            precio = float(input("Precio del producto: "))  # Solicita el precio del producto
+            cantidad = int(input("Cantidad en stock: "))  # Solicita la cantidad en stock
             if precio < 0 or cantidad < 0:
                 print("Error: Precio y cantidad deben ser valores positivos.")
-                return
+                return  # Si el precio o la cantidad son negativos, muestra un mensaje y termina el método
         except ValueError:
-            print("Error: Ingresa valores numéricos válidos.")
+            print("Error: Ingresa valores numéricos válidos.")  # Mensaje de error si la entrada no es numérica
             return
 
-        self.productos[nombre] = {"precio": precio, "stock": cantidad}
-        print(f"El producto '{nombre}' fue añadido correctamente.")
+        self.productos[nombre] = {"precio": precio, "stock": cantidad}  # Añade el producto al diccionario
+        print(f"El producto '{nombre}' fue añadido correctamente.")  # Mensaje de confirmación
 
     def vender_producto(self):
         """Reduce la cantidad en stock cuando se venden productos."""
-        nombre = input("Nombre del producto a vender: ").lower()
+        nombre = input("Nombre del producto a vender: ").lower()  # Solicita el nombre del producto y lo convierte a minúsculas
         if nombre not in self.productos:
             print(f"El producto '{nombre}' no existe en el inventario.")
-            return
+            return  # Si el producto no existe, muestra un mensaje y termina el método
         try:
-            cantidad = int(input("Cantidad a vender: "))
+            cantidad = int(input("Cantidad a vender: "))  # Solicita la cantidad a vender
             if cantidad <= 0:
                 print("Error: La cantidad debe ser mayor a cero.")
-                return
+                return  # Si la cantidad es menor o igual a cero, muestra un mensaje y termina el método
         except ValueError:
-            print("Error: Ingresa un número entero válido.")
+            print("Error: Ingresa un número entero válido.")  # Mensaje de error si la entrada no es numérica
             return
 
         if cantidad > self.productos[nombre]['stock']:
             print(f"No hay suficiente stock disponible. Solo hay {self.productos[nombre]['stock']} unidades.")
         else:
-            self.productos[nombre]['stock'] -= cantidad
+            self.productos[nombre]['stock'] -= cantidad  # Reduce la cantidad en stock
             print(f"Venta realizada. Stock restante de '{nombre}': {self.productos[nombre]['stock']}")
 
             if self.productos[nombre]['stock'] == 0:
@@ -81,7 +81,7 @@ class Supermercado:
 
     def mostrar_producto(self):
         """Muestra la información de un producto específico."""
-        nombre = input("Nombre del producto a consultar: ").lower()
+        nombre = input("Nombre del producto a consultar: ").lower()  # Solicita el nombre del producto y lo convierte a minúsculas
         if nombre in self.productos:
             info = self.productos[nombre]
             disponibilidad = "Disponible" if info['stock'] > 0 else "Agotado"
@@ -95,8 +95,8 @@ class Supermercado:
             print("El inventario está vacío.")
             return
 
-        total = sum(info["precio"] * info["stock"] for info in self.productos.values())
-        print(f"Valor total del inventario: ${total:.2f}")
+        total = sum(info["precio"] * info["stock"] for info in self.productos.values())  # Calcula el valor total del inventario
+        print(f"Valor total del inventario: ${total:.2f}")  # Muestra el valor total del inventario
 
 # Ejecutar el programa
-supermercado = Supermercado()
+supermercado = Supermercado()  # Crea una instancia de la clase Supermercado y ejecuta el menú
