@@ -97,7 +97,7 @@ Una *clase* es una plantilla para crear objetos, y un *objeto* es una instancia 
 
 ```python
 class Persona:
-    def _init_(self, nombre, edad):
+    def __init__(self, nombre, edad):
         self.nombre = nombre  # Atributo
         self.edad = edad      # Atributo
 
@@ -108,6 +108,29 @@ class Persona:
 # Crear un objeto de la clase Persona
 persona1 = Persona("Carlos", 22)
 print(persona1.saludar())  # Salida: Hola, soy Carlos y tengo 22 años.
+```
+- El método __init__() actúa como un constructor que inicializa los atributos del objeto.
+- self permite acceder a los atributos y métodos de la instancia.
+
+## *2. Encapsulamiento*
+El encapsulamiento protege los datos de acceso externo, evitando modificaciones no controladas. Se logra mediante la definición de atributos privados y métodos de acceso.
+
+```python
+class CuentaBancaria:
+    def __init__(self, saldo):
+        self.__saldo = saldo  # Atributo privado
+
+    def depositar(self, cantidad):
+        """Método para depositar dinero."""
+        self.__saldo += cantidad
+
+    def obtener_saldo(self):
+        """Método para obtener el saldo actual."""
+        return self.__saldo
+# Uso de la clase
+cuenta = CuentaBancaria(1000)
+cuenta.depositar(500)
+print(cuenta.obtener_saldo())  # Salida: 1500
 ```
 
 # Referencias
