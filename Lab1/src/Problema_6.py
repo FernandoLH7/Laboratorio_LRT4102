@@ -2,30 +2,43 @@ import random
 
 class RobotExplorador:
     def __init__(self, n=5):
+        # Inicializa el tamaño del mapa
         self.n = n
+        # Crea una matriz n x n llena de 'o' (espacios libres)
         self.matriz = [['o' for _ in range(n)] for _ in range(n)]
-        self.robot_pos = (0, 0)  # Posición inicial
-        self.destino = (n - 1, n - 1)  # Meta en la esquina inferior derecha
-        self.camino = []  # Lista para guardar el camino recorrido
-        self.direccion = 'D'  # El robot inicia moviéndose a la derecha ('D' = Derecha)
+        # Posición inicial del robot
+        self.robot_pos = (0, 0)
+        # Meta en la esquina inferior derecha
+        self.destino = (n - 1, n - 1)
+        # Lista para guardar el camino recorrido
+        self.camino = []
+        # El robot inicia moviéndose a la derecha ('D' = Derecha)
+        self.direccion = 'D'
 
+        # Genera obstáculos aleatorios en el mapa
         self.generar_obstaculos()
+        # Inicia la búsqueda del camino hacia la meta
         self.encontrar_camino()
 
     def generar_obstaculos(self):
         """Genera obstáculos aleatorios sin bloquear el inicio ni la meta."""
-        num_obstaculos = random.randint(self.n, self.n * 2)  # Número aleatorio de obstáculos
+        # Número aleatorio de obstáculos
+        num_obstaculos = random.randint(self.n, self.n * 2)
         for _ in range(num_obstaculos):
             while True:
+                # Genera coordenadas aleatorias para los obstáculos
                 x, y = random.randint(0, self.n - 1), random.randint(0, self.n - 1)
-                if (x, y) not in [(0, 0), self.destino]:  # No colocar en inicio ni meta
+                # Asegura que los obstáculos no se coloquen en el inicio ni en la meta
+                if (x, y) not in [(0, 0), self.destino]:
                     self.matriz[x][y] = 'X'
                     break
 
     def encontrar_camino(self):
         """Ejecuta la lógica de exploración del robot para encontrar la salida."""
+        # Posición inicial del robot
         x, y = self.robot_pos
-        self.camino.append((x, y))  # Guarda la posición inicial
+        # Guarda la posición inicial en el camino
+        self.camino.append((x, y))
 
         # Movimientos posibles con sus direcciones
         movimientos = {
@@ -43,7 +56,9 @@ class RobotExplorador:
             nuevo_x, nuevo_y = x + dx, y + dy
 
             if self.movimiento_valido(nuevo_x, nuevo_y):
+                # Si el movimiento es válido, actualiza la posición del robot
                 x, y = nuevo_x, nuevo_y
+                # Guarda la nueva posición en el camino
                 self.camino.append((x, y))
                 movido = True
             else:
