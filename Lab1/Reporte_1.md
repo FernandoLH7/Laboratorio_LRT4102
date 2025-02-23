@@ -270,6 +270,8 @@ Este programa calcula el salario de un trabajador en función de las horas traba
 ## *Problema 3: Cálculo de salario de operadores*
 Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores. Imprime el nombre y el sueldo a pagar de cada operador.
 
+### *Código*
+
 ```python
 class Operador:
     def __init__(self, nombre, sueldo_por_hora, horas_trabajadas):
@@ -329,7 +331,18 @@ empresa.agregar_operador("Ana", 14, 30)
 # Llama al método mostrar_sueldos de la empresa para imprimir la lista de sueldos de los operadores
 empresa.mostrar_sueldos()
 ```
+### *Descripción código*
 
+Este programa implementa un sistema de gestión de sueldos para operadores utilizando Programación Orientada a Objetos (POO) en Python.
+
+- Clase Operador: Modela a un empleado con los atributos nombre, sueldo por hora y horas trabajadas. Contiene el método calcular_sueldo(), que multiplica el sueldo por hora por las horas trabajadas, y mostrar_info(), que imprime el nombre del operador y su sueldo total.
+
+- Clase Empresa: Administra una lista de operadores y permite:
+
+    - Agregar operadores con agregar_operador().
+    - Mostrar el sueldo de todos los operadores con mostrar_sueldos().
+
+- Ejecución del programa: Se crea una instancia de Empresa, se añaden varios operadores con sus datos y se imprimen los sueldos de todos los empleados.
 ---
 
 ## *Problema 4: Promedio de números pares y producto de impares*
