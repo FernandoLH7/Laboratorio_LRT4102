@@ -724,7 +724,7 @@ en Python que permita:
 
 Este programa implementa un sistema de gestión de inventario para un supermercado, permitiendo al usuario administrar productos mediante Programación Orientada a Objetos (POO) en Python. Se utiliza una clase Supermercado, la cual encapsula todas las funcionalidades dentro de diferentes métodos.
 
-- Inicialización de la Clase Supermercado
+#### *Inicialización de la Clase Supermercado*
 
 ```python
 class Supermercado:
@@ -738,7 +738,7 @@ class Supermercado:
     - self.productos = {}: Se inicializa un diccionario vacío para almacenar los productos. Cada producto tendrá su nombre como clave y un diccionario interno con su precio y cantidad en stock.
     - self.ejecutar_menu(): Llama automáticamente al método ejecutar_menu(), mostrando el menú de opciones cuando se inicia el programa.
 
-- Método mostrar_menu(): Mostrar Opciones Disponibles
+#### *Método mostrar_menu(): Mostrar Opciones Disponibles*
 ```python
     def mostrar_menu(self):
         """Muestra las opciones disponibles en el menú."""
@@ -753,9 +753,8 @@ class Supermercado:
     - Muestra un menú con las opciones disponibles para el usuario.
     - No tiene entradas ni salidas, simplemente imprime el menú en pantalla.
 
-- Método ejecutar_menu(): Control del Flujo Principal
+#### *Método ejecutar_menu(): Control del Flujo Principal*
 ```python
-
     def ejecutar_menu(self):
         """Ejecuta el menú en un bucle hasta que el usuario elija salir."""
         while True:
@@ -777,7 +776,16 @@ class Supermercado:
                     print("Opción no válida, intenta de nuevo.")  # Mensaje de opción no válida
             except ValueError:
                 print("Error: Ingresa un número válido.")  # Mensaje de error si la entrada no es un número
+```
+- Explicación
+    - Bucle while True: Mantiene el programa en ejecución hasta que el usuario elija salir.
+    - input(): Captura la opción elegida por el usuario.
+    - try-except: Maneja errores si el usuario ingresa un valor no numérico.
+    - Según la opción ingresada, se llama al método correspondiente (agregar_producto(), vender_producto(), etc.).
+    - Si el usuario elige opción 5, el programa muestra "Saliendo del programa..." y termina.
 
+#### *Método agregar_producto(): Agregar Productos al Inventario*
+```python
     def agregar_producto(self):
         """Añade un nuevo producto con nombre, precio y cantidad al inventario."""
         nombre = input("Nombre del producto: ").lower()  # Solicita el nombre del producto y lo convierte a minúsculas
