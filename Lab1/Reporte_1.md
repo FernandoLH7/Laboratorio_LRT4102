@@ -179,7 +179,7 @@ for animal in animales:
 
 El paradigma de Programación Orientada a Objetos en Python ofrece una forma modular y eficiente de estructurar el código. Aplicando principios como encapsulamiento, herencia y polimorfismo, los programas son más organizados, reutilizables y mantenibles.
 
-# Problema a Resolver
+# Problemas a Resolver
 
 A continuación, se presentan los problemas resueltos en este laboratorio. Cada uno de ellos aborda conceptos clave de programación en Python, como el uso de estructuras de control, manipulación de listas, generación de números aleatorios y la aplicación del paradigma de Programación Orientada a Objetos (POO).
 
