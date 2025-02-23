@@ -894,6 +894,11 @@ supermercado = Supermercado()  # Crea una instancia de la clase Supermercado y e
     - Calcula el valor total sumando (precio * stock) de cada producto.
     - Muestra el resultado en pantalla, indicando el valor total del inventario.
 ---
+# Librerias usadas
+
+Para solucionar los problemas solicitados por el Laboratorio1, se utilizaron unicamente dos librerias:
+- Libreria math: para poder realizar el producto sin un ciclo for
+- Libreria random: para poder generar números aleatorios
 
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
