@@ -218,7 +218,7 @@ resultado.sumar()
 Este programa implementa la suma de los primeros n números enteros positivos utilizando Programación Orientada a Objetos (POO) en Python. Para ello, se define una clase llamada Suma que encapsula la funcionalidad.
 
 - Entrada de datos: Al crear una instancia de la clase, el constructor _init_ solicita al usuario un número entero (n).
-- Cálculo de la suma: La operación se realiza dentro del método sumar(), utilizando la fórmula matemática:$$ \text{suma} = \frac{n(n+1)}{2} $$ 
+- Cálculo de la suma: La operación se realiza dentro del método sumar(), utilizando la fórmula matemática: $$ \text{suma} = \frac{n(n+1)}{2} $$ 
 - Salida: El resultado se imprime en pantalla mostrando la suma de todos los números desde 1 hasta n.
 
 ---
