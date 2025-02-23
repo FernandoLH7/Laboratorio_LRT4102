@@ -186,12 +186,11 @@ A continuación, se presentan los problemas resueltos en este laboratorio. Cada 
 ---
 
 ## *Problema 1: Suma de los primeros números enteros positivos*
-Escribir un programa que lea un entero positivo “n” introducido por el usuario y después muestre en pantalla la suma de todos los enteros desde 1 hasta n.  
-La suma de los primeros enteros positivos puede ser calculada de la siguiente forma:
+Escribir un programa que lea un entero positivo “n” introducido por el usuario y después muestre en pantalla la suma de todos los enteros desde 1 hasta n. La suma de los primeros enteros positivos puede ser calculada de la siguiente forma:
 
-\[
+$$
 \text{suma} = \frac{n(n+1)}{2}
-\]
+$$
 
 ---
 
@@ -216,35 +215,24 @@ Imprime el nombre y el sueldo a pagar de cada operador.
 
 ## *Problema 5: Adivinanza de un número secreto*
 Crea un programa que solicite al usuario adivinar un número secreto.  
-El programa debe generar un número aleatorio entre *1 y 10*, y el usuario debe intentar adivinarlo.  
-El programa debe proporcionar pistas si el número ingresado por el usuario es *demasiado alto o bajo*.  
-El bucle while debe continuar hasta que el usuario adivine correctamente.  
-Al final, se debe imprimir en cuántos intentos el usuario logró adivinar el número.
+- El programa debe generar un número aleatorio entre *1 y 10*, y el usuario debe intentar adivinarlo.  
+- El programa debe proporcionar pistas si el número ingresado por el usuario es *demasiado alto o bajo*.  
+- El bucle while debe continuar hasta que el usuario adivine correctamente.  
+- Al final, se debe imprimir en cuántos intentos el usuario logró adivinar el número.
 
 ---
 
 ## *Problema 6: Robot explorador en una matriz*
-El programa debe generar una matriz de al menos *5x5*.  
-El robot inicia su camino en la *posición (0,0)* de la matriz y debe salir en la *posición (4,4)* o en la posición máxima si el tamaño de la matriz cambia.  
-El número y la posición de los obstáculos es aleatoria.  
+El programa debe generar una matriz de al menos *5x5*. El robot inicia su camino en la *posición (0,0)* de la matriz y debe salir en la *posición (4,4)* o en la posición máxima si el tamaño de la matriz cambia. El número y la posición de los obstáculos es aleatoria.  
 
 El robot solo puede:
 - Avanzar.
 - Girar a la izquierda.
 - Girar a la derecha para buscar un camino libre.
 
-Si el robot *no puede salir*, debe imprimir en pantalla:  
-"Imposible llegar al destino"  
+Si el robot *no puede salir*, debe imprimir en pantalla: "Imposible llegar al destino"  
 
-Si el robot *llega a su destino*, deberá imprimir el mapa con los espacios libres y obstáculos de la siguiente forma (X para obstáculos y o para espacios libres)
-
-O O O X O
-O O O O O
-O O O O X
-O O O O O 
-O X X X O
-
-Deberá imprimir también la ruta que siguió y deberá mostrar un segundo mapa con el "camino" seguido por el robot mediante flechas
+Si el robot *llega a su destino*, deberá imprimir el mapa con los espacios libres y obstáculos de la siguiente forma (X para obstáculos y o para espacios libres). Deberá imprimir también la ruta que siguió y deberá mostrar un segundo mapa con el "camino" seguido por el robot mediante flechas
 
 ## *Problema 7: Gestión de inventario de una tienda*
 Una tienda quiere gestionar su inventario de productos. Para ello, debes implementar un sistema 
