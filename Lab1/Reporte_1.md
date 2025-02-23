@@ -195,14 +195,12 @@ $$
 ---
 
 ## *Problema 2: Cálculo de salario basado en horas trabajadas*
-Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora.  
-Después debe mostrar por pantalla la paga que le corresponde.
+Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
 
 ---
 
 ## *Problema 3: Cálculo de salario de operadores*
-Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores.  
-Imprime el nombre y el sueldo a pagar de cada operador.
+Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores. Imprime el nombre y el sueldo a pagar de cada operador.
 
 ---
 
