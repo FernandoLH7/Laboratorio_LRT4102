@@ -179,6 +179,81 @@ for animal in animales:
 
 El paradigma de Programación Orientada a Objetos en Python ofrece una forma modular y eficiente de estructurar el código. Aplicando principios como encapsulamiento, herencia y polimorfismo, los programas son más organizados, reutilizables y mantenibles.
 
+# Problema a Resolver
+
+A continuación, se presentan los problemas resueltos en este laboratorio. Cada uno de ellos aborda conceptos clave de programación en Python, como el uso de estructuras de control, manipulación de listas, generación de números aleatorios y la aplicación del paradigma de Programación Orientada a Objetos (POO).
+
+---
+
+## *Problema 1: Suma de los primeros números enteros positivos*
+Escribir un programa que lea un entero positivo “n” introducido por el usuario y después muestre en pantalla la suma de todos los enteros desde 1 hasta n.  
+La suma de los primeros enteros positivos puede ser calculada de la siguiente forma:
+
+\[
+\text{suma} = \frac{n(n+1)}{2}
+\]
+
+---
+
+## *Problema 2: Cálculo de salario basado en horas trabajadas*
+Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora.  
+Después debe mostrar por pantalla la paga que le corresponde.
+
+---
+
+## *Problema 3: Cálculo de salario de operadores*
+Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores.  
+Imprime el nombre y el sueldo a pagar de cada operador.
+
+---
+
+## *Problema 4: Promedio de números pares y producto de impares*
+- Crea una lista llamada numeros que contenga al menos 10 números.  
+- Calcula el *promedio de los números pares* y el *producto de los números impares*.  
+- Imprime los resultados.
+
+---
+
+## *Problema 5: Adivinanza de un número secreto*
+Crea un programa que solicite al usuario adivinar un número secreto.  
+El programa debe generar un número aleatorio entre *1 y 10*, y el usuario debe intentar adivinarlo.  
+El programa debe proporcionar pistas si el número ingresado por el usuario es *demasiado alto o bajo*.  
+El bucle while debe continuar hasta que el usuario adivine correctamente.  
+Al final, se debe imprimir en cuántos intentos el usuario logró adivinar el número.
+
+---
+
+## *Problema 6: Robot explorador en una matriz*
+El programa debe generar una matriz de al menos *5x5*.  
+El robot inicia su camino en la *posición (0,0)* de la matriz y debe salir en la *posición (4,4)* o en la posición máxima si el tamaño de la matriz cambia.  
+El número y la posición de los obstáculos es aleatoria.  
+
+El robot solo puede:
+- Avanzar.
+- Girar a la izquierda.
+- Girar a la derecha para buscar un camino libre.
+
+Si el robot *no puede salir*, debe imprimir en pantalla:  
+"Imposible llegar al destino"  
+
+Si el robot *llega a su destino*, deberá imprimir el mapa con los espacios libres y obstáculos de la siguiente forma (X para obstáculos y o para espacios libres)
+
+O O O X O
+O O O O O
+O O O O X
+O O O O O 
+O X X X O
+
+Deberá imprimir también la ruta que siguió y deberá mostrar un segundo mapa con el "camino" seguido por el robot mediante flechas
+
+## *Problema 7: Gestión de inventario de una tienda*
+Una tienda quiere gestionar su inventario de productos. Para ello, debes implementar un sistema 
+en Python que permita: 
+- Crear productos, cada uno con un nombre, precio y cantidad en stock. 
+- Actualizar la cantidad en stock cuando se venden productos. 
+- Mostrar la información de un producto con su disponibilidad. 
+- Calcular el valor total del inventario (precio × cantidad de cada producto).
+
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
 - Van Rossum, G. (1991). Python programming language. Python Software Foundation.
