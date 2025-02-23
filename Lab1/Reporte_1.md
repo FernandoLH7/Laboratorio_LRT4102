@@ -5,7 +5,7 @@ Python es un *lenguaje multiparadigma, lo que significa que admite diferentes es
 
 ---
 
-## *Tipos de Variables en Python*
+## *1. Tipos de Variables en Python*
 En Python, las variables no requieren una declaración de tipo previa, ya que el lenguaje usa *tipado dinámico*. Esto significa que el tipo de una variable se determina automáticamente según el valor asignado (Lutz, 2013).
 
 Los tipos de datos más utilizados en Python incluyen:
@@ -73,7 +73,7 @@ while contador < 5:
     print("Contador:", contador)
     contador += 1
 ```
-## *Funciones en python*
+## *2. Funciones en python*
 Las funciones permiten encapsular código reutilizable. En Python, se definen con la palabra clave def.
 
 ```python
