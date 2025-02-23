@@ -231,6 +231,8 @@ $$
 ## *Problema 2: Cálculo de salario basado en horas trabajadas*
 Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
 
+### *Código*
+
 ```python
 
 class Numer:
@@ -253,6 +255,13 @@ paga = Numer()
 # Llamamos al método calcular de la instancia paga para realizar el cálculo e imprimir el resultado.
 paga.calcular()
 ```
+Este programa calcula el salario de un trabajador en función de las horas trabajadas y el costo por hora, utilizando Programación Orientada a Objetos (POO) en Python.
+
+- Entrada de datos: La clase Numer solicita al usuario el número de horas trabajadas y el costo por hora mediante el constructor _init_(), convirtiéndolos a enteros.
+
+- Cálculo del salario: El método calcular() multiplica las horas trabajadas por el costo por hora para obtener el salario total.
+
+- Salida: El programa imprime el salario calculado en pantalla con un mensaje descriptivo.
 
 ---
 
