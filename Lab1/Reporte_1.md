@@ -136,8 +136,51 @@ print(cuenta.obtener_saldo())  # Salida: 1500
 - El acceso a datos se realiza mediante métodos específicos (obtener_saldo()).
 
 ## *3. Herencia*
+La herencia permite que una clase (subclase) reutilice atributos y métodos de otra clase (superclase). Esto evita la repetición de código y mejora la organización.
+
+```python
+class Animal:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hacer_sonido(self):
+        return "Hace un sonido"
+
+# Clase Perro hereda de Animal
+class Perro(Animal):
+    def hacer_sonido(self):
+        return "Ladra"
+
+perro1 = Perro("Rex")
+print(perro1.nombre)          # Salida: Rex
+print(perro1.hacer_sonido())  # Salida: Ladra
+```
+La clase Perro hereda de Animal, reutilizando su estructura y sobrescribiendo el método hacer_sonido().
+
+## *4. Polimorfismo*
+El polimorfismo permite que diferentes clases usen el mismo método con diferentes implementaciones. Esto mejora la flexibilidad y reutilización del código.
+
+```python
+class Gato:
+    def hacer_sonido(self):
+        return "Maulla"
+
+class Vaca:
+    def hacer_sonido(self):
+        return "Muge"
+
+# Uso de polimorfismo
+animales = [Gato(), Vaca()]
+for animal in animales:
+    print(animal.hacer_sonido())
+```
+- Cada clase define su propia versión de hacer_sonido().
+- El polimorfismo permite tratar objetos de distintas clases de manera uniforme.
+
+El paradigma de Programación Orientada a Objetos en Python ofrece una forma modular y eficiente de estructurar el código. Aplicando principios como encapsulamiento, herencia y polimorfismo, los programas son más organizados, reutilizables y mantenibles.
 
 # Referencias
 - Lutz, M. (2013). Learning Python. O'Reilly Media.
 - Van Rossum, G. (1991). Python programming language. Python Software Foundation.
 - Python Software Foundation. (2023). Python documentation. https://docs.python.org/3/
+- Booch, G. (1994). Object-Oriented Analysis and Design with Applications. Addison-Wesley.
