@@ -83,3 +83,8 @@ def saludar(nombre):
 print(saludar("Juan"))  # Salida: Hola, Juan!
 ```
 Como se puede observar anteriormente, python es un lenguaje versátil y fácil de aprender, lo que lo hace ideal para principiantes y profesionales. Sus estructuras de control, tipos de datos y paradigmas de programación permiten desarrollar soluciones eficientes para diferentes problemas.
+
+# Referencias
+- Lutz, M. (2013). Learning Python. O'Reilly Media.
+- Van Rossum, G. (1991). Python programming language. Python Software Foundation.
+- Python Software Foundation. (2023). Python documentation. https://docs.python.org/3/
