@@ -777,7 +777,7 @@ class Supermercado:
             except ValueError:
                 print("Error: Ingresa un número válido.")  # Mensaje de error si la entrada no es un número
 ```
-- Explicación
+- Explicación:
     - Bucle while True: Mantiene el programa en ejecución hasta que el usuario elija salir.
     - input(): Captura la opción elegida por el usuario.
     - try-except: Maneja errores si el usuario ingresa un valor no numérico.
@@ -804,7 +804,20 @@ class Supermercado:
 
         self.productos[nombre] = {"precio": precio, "stock": cantidad}  # Añade el producto al diccionario
         print(f"El producto '{nombre}' fue añadido correctamente.")  # Mensaje de confirmación
+```
+- Explicación:
+    - Se solicita el nombre del producto y se convierte a minúsculas para evitar que "Manzana" y "manzana" sean tratados como productos diferentes.
+    - Se verifica si el producto ya existe en self.productos.
+        - Si ya está registrado, se muestra un mensaje de advertencia y no se añade nuevamente.
+    - Se solicitan el precio y la cantidad, convirtiéndolos a float y int, respectivamente.
+    - Se valida que los valores sean positivos:
+        - Si el usuario ingresa un número negativo, se muestra un mensaje de error.
+        - Si el usuario ingresa texto en lugar de números, se captura la excepción con except ValueError.
+    - Si todo es correcto, el producto se almacena en el diccionario con su nombre como clave y su precio y stock como valores.
+    - Se muestra un mensaje de confirmación informando que el producto fue añadido.
 
+#### *Método vender_producto(): Reducir Stock al Vender*
+```python
     def vender_producto(self):
         """Reduce la cantidad en stock cuando se venden productos."""
         nombre = input("Nombre del producto a vender: ").lower()  # Solicita el nombre del producto y lo convierte a minúsculas
@@ -829,7 +842,20 @@ class Supermercado:
             if self.productos[nombre]['stock'] == 0:
                 print(f"El producto '{nombre}' se ha agotado y será eliminado del inventario.")
                 del self.productos[nombre]  # Elimina el producto si su stock llega a 0
+```
+- Explicación:
+    - Se solicita el nombre del producto y se convierte a minúsculas para evitar diferencias de escritura.
+    - Se verifica si el producto está en el inventario:
+        - Si no existe, se muestra un mensaje de advertencia y se detiene el proceso.
+    - Se solicita la cantidad a vender y se convierte a int.
+    - Se validan posibles errores:
+        - Si la cantidad es menor o igual a 0, se muestra un mensaje de error.
+        - Si el usuario ingresa texto en vez de un número, se captura la excepción con except ValueError.
+    - Si hay suficiente stock, la cantidad se resta del inventario.
+    - Si el stock llega a 0, el producto se elimina del diccionario, indicando que está agotado.
 
+#### *Método mostrar_producto(): Consultar Información de un Producto*
+```python
     def mostrar_producto(self):
         """Muestra la información de un producto específico."""
         nombre = input("Nombre del producto a consultar: ").lower()  # Solicita el nombre del producto y lo convierte a minúsculas
@@ -839,7 +865,17 @@ class Supermercado:
             print(f"Producto: {nombre}, Precio: ${info['precio']:.2f}, Stock: {info['stock']} ({disponibilidad})")
         else:
             print(f"El producto '{nombre}' no existe en el inventario.")
+```
+- Explicación:
+    - Se solicita el nombre del producto y se convierte a minúsculas.
+    - Se verifica si el producto existe en el inventario:
+        - Si el producto está registrado, se obtiene su precio y stock.
+        - Se indica si el producto está disponible o agotado.
+    - Si el producto no existe, se muestra un mensaje de advertencia.
 
+#### *Método valor_inventario(): Calcular el Valor Total del Inventario*
+Este método calcula el valor total del inventario, sumando el precio por la cantidad de cada producto.
+```python
     def valor_inventario(self):
         """Calcula el valor total del inventario (precio * cantidad de cada producto)."""
         if not self.productos:
@@ -852,9 +888,11 @@ class Supermercado:
 # Ejecutar el programa
 supermercado = Supermercado()  # Crea una instancia de la clase Supermercado y ejecuta el menú
 ```
-### *Descripción código*
-
-
+- Explicación:
+    - Verifica si el inventario está vacío:
+        - Si no hay productos, se muestra un mensaje y se detiene el cálculo.
+    - Calcula el valor total sumando (precio * stock) de cada producto.
+    - Muestra el resultado en pantalla, indicando el valor total del inventario.
 ---
 
 # Referencias
