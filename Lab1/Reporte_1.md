@@ -720,7 +720,11 @@ en Python que permita:
 - Mostrar la información de un producto con su disponibilidad. 
 - Calcular el valor total del inventario (precio × cantidad de cada producto).
 
-### *Código*
+### *Código y descripción*
+
+Este programa implementa un sistema de gestión de inventario para un supermercado, permitiendo al usuario administrar productos mediante Programación Orientada a Objetos (POO) en Python. Se utiliza una clase Supermercado, la cual encapsula todas las funcionalidades dentro de diferentes métodos.
+
+- Inicialización de la Clase Supermercado
 
 ```python
 class Supermercado:
@@ -728,7 +732,13 @@ class Supermercado:
         """Inicializa el supermercado con un diccionario para almacenar los productos y ejecuta el menú."""
         self.productos = {}  # Diccionario para almacenar los productos
         self.ejecutar_menu()  # Ejecuta el menú al iniciar la clase
-
+```
+- Explicación:
+    - Se define la clase Supermercado, que representa el sistema de inventario.
+    - self.productos = {}: Se inicializa un diccionario vacío para almacenar los productos. Cada producto tendrá su nombre como clave y un diccionario interno con su precio y cantidad en stock.
+    - self.ejecutar_menu(): Llama automáticamente al método ejecutar_menu(), mostrando el menú de opciones cuando se inicia el programa.
+    
+```python
     def mostrar_menu(self):
         """Muestra las opciones disponibles en el menú."""
         print("\nMenú"
