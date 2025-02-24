@@ -887,3 +887,9 @@ supermercado = Supermercado()
 To solve the problems requested for Laboratory 1, only two libraries were used:
     - math library: to perform the product calculation without a for loop
     - random library: to generate random numbers
+
+# References
+- Lutz, M. (2013). Learning Python. O'Reilly Media.
+- Van Rossum, G. (1991). Python programming language. Python Software Foundation.
+- Python Software Foundation. (2023). Python documentation. https://docs.python.org/3/
+- Booch, G. (1994). Object-Oriented Analysis and Design with Applications. Addison-Wesley.
