@@ -885,6 +885,7 @@ supermercado = Supermercado()
 # Libraries Used
 
 To solve the problems requested for Laboratory 1, only two libraries were used:
+
     - math library: to perform the product calculation without a for loop
     - random library: to generate random numbers
 
