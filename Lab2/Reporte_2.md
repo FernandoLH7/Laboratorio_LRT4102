@@ -1,6 +1,23 @@
 # Introduction
 In this lab, we will explore fundamental concepts of ROS (Robot Operating System), specifically communication between nodes through talker and listener. Additionally, we will implement basic and advanced controls in turtlesim, ranging from manual keyboard control to proportional (P), proportional-integral (PI), and proportional-integral-derivative (PID) controllers to regulate the turtle's position. These concepts are essential in the development of autonomous robotic systems and the implementation of control algorithms in ROS (Quigley et al., 2015; Siciliano & Khatib, 2016).
 
+## *Key concepts*
+- ROS Nodes: In ROS, a node is a single process that performs computation. Nodes communicate with each other by publishing or subscribing to topics (Quigley et al., 2015).
+
+- Talker and Listener: A talker node is responsible for publishing messages to a topic, while a listener node subscribes to that topic and receives the messages (Quigley et al., 2015). These are basic forms of communication in ROS using the Publisher-Subscriber model.
+
+- Topics: In ROS, a topic is a bus over which data is exchanged. A node can publish data to a topic, and other nodes can subscribe to it to receive the data. Topics are used to implement one-to-many or many-to-many communication (Quigley et al., 2015).
+
+- Control Systems: Control systems are used to manage, command, direct, or regulate the behavior of other devices or systems using control loops. In the context of ROS, control systems are used to regulate robot motion.
+
+- Proportional (P) Control: The P controller applies a correction proportional to the current error (Khalil, 2002). It tries to minimize the error by making the system respond to it directly.
+
+- Proportional-Derivative (PD) Control: The PD controller not only applies a correction proportional to the error, but also a correction based on the rate of change of the error. This helps to reduce overshooting (Siciliano & Khatib, 2016).
+
+- Proportional-Integral-Derivative (PID) Control: The PID controller combines the proportional, derivative, and integral terms to correct the error, accounting for past, current, and future error behavior (Khalil, 2002).
+
+- Turtlesim: turtlesim is a simple simulation environment provided by ROS, used primarily for learning and testing purposes. It allows the user to control a virtual turtle using commands sent from ROS nodes (Quigley et al., 2015).
+
 # Problems to Solve
 
 Below are the problems solved in this lab. Each one addresses key Python programming concepts such as the use of control structures, list manipulation, random number generation, and the application of the Object-Oriented Programming (OOP) paradigm.
@@ -100,7 +117,8 @@ The listener.py script is responsible for subscribing to the chatter topic and p
 
 # Libraries Used
 # References
-- Lutz, M. (2013). Learning Python. O'Reilly Media.
-- Van Rossum, G. (1991). Python programming language. Python Software Foundation.
-- Python Software Foundation. (2023). Python documentation. https://docs.python.org/3/
-- Booch, G. (1994). Object-Oriented Analysis and Design with Applications. Addison-Wesley.
+- Quigley, M., Gerkey, B., & Smart, W. D. (2015). Programming Robots with ROS: A Practical Introduction to the Robot Operating System. O'Reilly Media.
+
+- Siciliano, B., & Khatib, O. (2016). Springer Handbook of Robotics. Springer.
+
+- Khalil, H. K. (2002). Nonlinear Systems (3rd ed.). Prentice Hall.
