@@ -380,7 +380,191 @@ This section focuses on teleoperation for controlling the turtle via keyboard in
 
     Pressing 'Q': This quits the program.
 
-# Libraries Used
+## *Lab2_Advanced: P, PD, and PID Controllers*
+In this section, the implementation of Proportional (P), Proportional-Derivative (PD), and Proportional-Integral-Derivative (PID) controllers in ROS is discussed. These controllers are used to control the movement of a virtual turtle in Turtlesim, adjusting its position and orientation dynamically.
+
+### *Proportional (P) Controller*
+The Proportional (P) controller is the simplest form of feedback control. It calculates an error between the current and desired positions, then applies a proportional correction. The control law is given by:
+
+u = Kp*e
+
+where:
+- u is the control signal (velocity),
+
+- Kp​ is the proportional gain,
+
+- e is the error (difference between desired and current position).
+
+#### *Code Breakdown: P Controller Implementation*
+The turtle_pc.py script implements a Proportional (P) controller to move the turtle to a user-specified position and orientation.
+
+##### 1. Node Initialization and ROS Communication Setup
+```python
+import rospy
+from geometry_msgs.msg import Twist
+from turtlesim.msg import Pose
+from math import radians
+```
+The script imports necessary ROS libraries:
+
+- rospy for ROS node handling,
+
+- geometry_msgs.msg.Twist to send movement commands,
+
+- turtlesim.msg.Pose to receive the turtle's position,
+
+- math.radians to convert degrees to radians.
+
+```python
+rospy.init_node('control_tortuga_x')
+```
+This initializes a ROS node named control_tortuga_x, which will control the turtle's movement.
+
+```python
+self.pose_subscriber = rospy.Subscriber('/turtle1/pose', Pose, self.pose_callback)
+```
+A subscriber is created to listen to /turtle1/pose, which provides the turtle’s real-time position.
+```python
+self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+```
+A publisher is created to send velocity commands to /turtle1/cmd_vel.
+
+##### 2. Retrieving the Turtle’s Position
+```python
+def pose_callback(self, pose):
+    self.current_x = pose.x
+    self.current_y = pose.y
+    self.current_theta = pose.theta
+```
+The pose_callback function updates the current x, y, and θ (orientation) of the turtle whenever a new position is received from Turtlesim.
+
+##### 3. Moving the Turtle to the Desired (x, y) Position
+```python
+def move_turtle_to_desired_x_y(self, desired_x, desired_y):
+    Kp = 1  # Proportional gain
+```
+A proportional gain Kp​ is defined. Increasing this value results in more aggressive movements.
+```python
+error_x = desired_x - self.current_x
+error_y = desired_y - self.current_y
+distancia = (error_x**2 + error_y**2)**0.5
+```
+The script calculates the error (difference between desired and current positions) and the Euclidean distance to the target point.
+```python
+vel_x = Kp * error_x
+vel_y = Kp * error_y
+```
+Velocity commands are proportional to the error.
+```python
+twist_msg = Twist()
+twist_msg.linear.x = vel_x
+twist_msg.linear.y = vel_y
+self.velocity_publisher.publish(twist_msg)
+```
+A Twist message is created and published to move the turtle.
+```python
+if distancia < 0.1:
+    rospy.loginfo("Target position reached")
+    break
+```
+Once the turtle is close enough (error < 0.1), movement stops.
+```python
+twist_msg = Twist()
+self.velocity_publisher.publish(twist_msg)
+```
+Finally, the velocity is set to zero to halt the turtle.
+
+##### 4. Rotating the Turtle to a Desired Orientation (θ)
+```python
+def rotate_turtle_to_desired_theta(self, desired_theta):
+    Kp_theta = 4  # Proportional gain for rotation
+```
+A separate proportional gain is used for angular movement.
+```python
+error_theta = desired_theta - self.current_theta
+error_theta = (error_theta + 3.14159) % (2 * 3.14159) - 3.14159
+```
+This ensures the angle error remains between -π and π (avoiding large rotations).
+```python
+angular_z = Kp_theta * error_theta
+twist_msg = Twist()
+twist_msg.angular.z = angular_z
+self.velocity_publisher.publish(twist_msg)
+```
+The turtle rotates with a speed proportional to the error.
+```python
+if abs(error_theta) < 0.05:
+    rospy.loginfo("Target orientation reached")
+    break
+```
+Once the angular error is small enough, the turtle stops rotating.
+
+##### 5. User Interaction and Execution
+```python
+def obtener_posicion(self):
+    x = float(input("Enter X coordinate: "))
+    y = float(input("Enter Y coordinate: "))
+    theta_grados = float(input("Enter Theta (degrees): "))
+    theta_radianes = radians(theta_grados)
+    return x, y, theta_radianes
+```
+The program prompts the user to input the desired (x, y, θ) position.
+```python
+def move_turtle_interactively(self):
+    while not rospy.is_shutdown():
+        desired_x, desired_y, desired_theta = self.obtener_posicion()
+        self.move_turtle_to_desired_x_y(desired_x, desired_y)
+        self.rotate_turtle_to_desired_theta(desired_theta)
+```
+This function continuously receives user inputs and moves the turtle accordingly.
+
+### *Proportional-Derivative (PD) Controller and Proportional-Derivative-Integrative (PID) Controller*
+The P controller is functional but has limitations:
+
+- It can lead to oscillations and overshoot when approaching the target.
+
+- It does not account for sudden changes in the system.
+
+To improve performance, the PD and PID controllers are modifications of the same control strategy by adding more terms:
+
+1. PD Controller (Proportional-Derivative)
+
+    - Introduces a derivative (D) term, which reacts to the rate of change of the error
+
+    - The derivative gain Kd helps reduce overshoot and provides smoother convergence.
+
+    - It stabilizes the system by anticipating future errors based on the current rate of change.
+
+2. PID Controller (Proportional-Integral-Derivative)
+
+    - Adds an integral (I) term to eliminate steady-state error.
+
+    - The integral gain Ki accumulates the error over time and ensures that even small errors eventually disappear.
+    
+    - Helps correct persistent offsets that the P or PD controller might leave.
+
+Since the PD and PID controllers only add additional gains (derivative and integral), their implementation follows the same structure as the P controller, with extra terms for error rate and error accumulation. Therefore, their code will not be analyzed separately, as it is fundamentally an extension of the Proportional (P) controller with additional adjustments.
+
+# Conclusion
+This report outlines a lab focused on learning ROS (Robot Operating System) and the implementation of basic to advanced control techniques for controlling a turtle in the turtlesim simulation environment. The key concepts discussed, such as ROS nodes, topics, publishers, subscribers, and control loops (P, PI, and PID), are fundamental to building autonomous robotic systems.
+
+The Introduction gives a solid overview of ROS, introducing concepts like nodes, topics, and control systems, which are essential for communication and control in a robotic context. The report presents these concepts clearly and ties them together with references to well-established sources, making it a valuable resource for both beginners and those looking to strengthen their ROS skills.
+
+The Lab Problems are presented in a structured way, progressing from basic tasks (creating nodes and establishing communication) to more complex ones (implementing control algorithms and drawing shapes in turtlesim). Each level is introduced with clear explanations, making the process easy to follow. The use of Python code snippets and detailed commentary on each step adds clarity to the overall understanding.
+
+## *Libraries Used*
+- rospy: Essential for interacting with ROS nodes in Python, it facilitates creating nodes, publishing, and subscribing to topics. It's widely used in ROS-based Python applications for communication.
+
+- std_msgs.msg: Specifically used for message types like String to exchange simple data types (e.g., strings) between nodes in ROS. This is a standard library used for common message types in ROS.
+
+- geometry_msgs.msg: Used to handle the Twist message type, which is crucial for controlling the robot’s linear and angular velocities. This is key to enabling movement and teleoperation of robots in ROS.
+
+- turtlesim.srv: This service package is unique to ROS's turtlesim simulator, offering services like spawning and killing turtles, as well as teleporting them. It’s a useful package for testing and visualizing robotic control in a 2D simulation.
+
+- termios and tty: These libraries are used for handling raw keyboard input, allowing real-time keypress detection without requiring the user to press "Enter." This is ideal for interactive control in ROS applications.
+
+- time: A simple but effective library for controlling timing in the execution of robot movements, ensuring that each action has the correct timing for control loops or sequences of commands.
+
 # References
 - Quigley, M., Gerkey, B., & Smart, W. D. (2015). Programming Robots with ROS: A Practical Introduction to the Robot Operating System. O'Reilly Media.
 
