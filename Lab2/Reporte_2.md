@@ -115,6 +115,271 @@ The listener.py script is responsible for subscribing to the chatter topic and p
 
 - Finally, rospy.spin() keeps the node running, allowing it to continuously listen for messages until it is manually stopped.
 
+## *Lab2_Medium: Keyboard Control and Drawing in Turtlesim*
+### *Keyboard Control*
+In this part of the lab, we implement keyboard control for the turtle in turtlesim using ROS. The goal is to allow the user to control the turtle's movement by pressing specific keys, showcasing the practical use of teleoperation with keyboard inputs.
+
+Key Concepts Addressed:
+- Teleoperation: This is the main concept, where the user sends control commands (via keyboard input) to the turtle to manipulate its movement in the 2D simulation environment. Teleoperation in ROS often involves sending velocity commands (e.g., Twist messages) to the robot's control system (Cacace & Meli, 2021).
+
+- Twist Messages: These messages are published to the /turtle1/cmd_vel topic to control the linear and angular velocities of the turtle. The Twist message type allows us to specify velocities in both x, y (linear velocities) and z (angular velocity), making it useful for simple motion control (ROS Wiki, 2025).
+
+- Topics in ROS: We use a topic (/turtle1/cmd_vel) to publish velocity commands that will control the movement of the turtle. The concept of topics in ROS facilitates communication between nodes through publish-subscribe communication (Quigley et al., 2009).
+
+#### *Code: keyboard_control.py*
+```python
+#!/usr/bin/env python3
+
+import rospy
+from geometry_msgs.msg import Twist
+import sys
+import termios
+import tty
+
+def get_key():
+    """Reads a key press without requiring the user to press Enter."""
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        key = sys.stdin.read(1)  # Reads a single character
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return key
+
+def main():
+    rospy.init_node('turtle_keyboard_control', anonymous=True)
+    pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+    
+    print("Control the turtle with the following keys:")
+    print("  x -> Move in +X direction")
+    print("  y -> Move in +Y direction")
+    print("  w -> Move in -X direction")
+    print("  z -> Move in -Y direction")
+    print("  → (Right Arrow) -> Rotate right")
+    print("  ← (Left Arrow) -> Rotate left")
+    print("  q -> Exit")
+
+    while not rospy.is_shutdown():
+        key = get_key()
+        msg = Twist()
+
+        if key.lower() == 'x':  # Move in +X direction
+            msg.linear.x = 2.0
+            print("Moving in +X direction")
+        elif key.lower() == 'y':  # Move in +Y direction
+            msg.linear.y = 2.0
+            print("Moving in +Y direction")
+        elif key.lower() == 'w':  # Move in -X direction
+            msg.linear.x = -2.0
+            print("Moving in -X direction")
+        elif key.lower() == 'z':  # Move in -Y direction
+            msg.linear.y = -2.0
+            print("Moving in -Y direction")
+
+        elif key == '\x1b':  # Special keys (arrow keys)
+            key = sys.stdin.read(2)  # Read next character
+
+            if key == '[C':  # Right arrow
+                msg.angular.z = -1.0
+                print("Rotating right")
+            elif key == '[D':  # Left arrow
+                msg.angular.z = 1.0
+                print("Rotating left")
+
+        elif key.lower() == 'q':  # Exit
+            print("Exiting...")
+            break  
+
+        pub.publish(msg)
+
+if __name__ == '__main__':
+    main()
+```
+#### *Explanation: keyboard_control.py*
+- get_key():
+
+    This function reads a key press from the user without needing to press the "Enter" key. It uses the termios and tty libraries to configure the terminal for raw input, ensuring that we can capture a single character.
+
+- Twist Message and pub.publish(msg):
+
+    The Twist message is used to control the turtle's movement. Depending on the key pressed, we set the values of msg.linear.x, msg.linear.y, and msg.angular.z to move the turtle forward, backward, or rotate. For example:
+
+        Pressing 'x' makes the turtle move forward in the X direction (positive X-axis).
+
+        Pressing the right arrow key rotates the turtle to the right.
+
+    After setting the velocities, the pub.publish(msg) sends the Twist message to the topic /turtle1/cmd_vel.
+
+- Key Control:
+
+    The user controls the turtle using keyboard inputs:
+
+        'x': Move forward along the X-axis.
+
+        'y': Move forward along the Y-axis.
+
+        'w': Move backward along the X-axis.
+
+        'z': Move backward along the Y-axis.
+
+        Arrow keys: Rotate the turtle left or right.
+
+        'q': Exit the program.
+
+- ROS Publisher:
+
+    The pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10) line creates a publisher that sends Twist messages to the /turtle1/cmd_vel topic. This is the topic that controls the turtle's movement.
+
+The script provides a simple interface for teleoperation. By publishing velocity commands to a topic, the user can move and rotate the turtle based on real-time inputs. This technique can be expanded to more complex robotic systems, where sensors and feedback loops are used for autonomous control (Vasudevan, 2017).
+
+In this case, using the Twist message type allows the user to control both the linear and angular velocities of the turtle, which is a straightforward way to handle movement in 2D space.
+
+### *Drawing shapes*
+In this section, we will focus on drawing basic shapes with turtlesim and creating a keyboard control for a turtle. This practice allows us to demonstrate the usage of ROS topics, services, and control commands, while learning how to interact with the turtlesim environment.
+
+Key Concepts Addressed:
+
+- Services in ROS: Services in ROS are used for synchronous communication between nodes, where one node requests an operation and waits for a response. In the code, services like /spawn and /kill are used to create and delete turtles in the simulator.
+
+#### *Code: dibujar.py*
+```python
+#!/usr/bin/env python3
+
+import rospy
+from geometry_msgs.msg import Twist
+from turtlesim.srv import Spawn, Kill, TeleportAbsolute
+import sys
+import termios
+import tty
+import time
+
+def get_key():
+    """Reads a keypress without needing to press Enter."""
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        key = sys.stdin.read(1)  # Read a single character
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return key
+
+def kill_turtle(name):
+    """Kills a turtle if it exists."""
+    rospy.wait_for_service('/kill')
+    try:
+        kill = rospy.ServiceProxy('/kill', Kill)
+        kill(name)
+    except rospy.ServiceException as e:
+        rospy.logwarn(f"Could not kill {name}. It might not exist.")
+
+def spawn_turtle(x, y, theta, name):
+    """Spawns a new turtle at the given position."""
+    rospy.wait_for_service('/spawn')
+    try:
+        spawn = rospy.ServiceProxy('/spawn', Spawn)
+        spawn(x, y, theta, name)
+    except rospy.ServiceException as e:
+        rospy.logerr(f"Error spawning {name}: {e}")
+
+def draw_square(pub):
+    """Draws a square with the turtle."""
+    msg = Twist()
+    for _ in range(4):
+        msg.linear.x = 0.0
+        msg.angular.z = 1.57  # 90 degrees
+        pub.publish(msg)
+        time.sleep(2)
+
+        msg.linear.x = 2.0
+        msg.angular.z = 0.0  # Move forward
+        pub.publish(msg)
+        time.sleep(2)
+
+def draw_triangle(pub):
+    """Draws an equilateral triangle with the turtle."""
+    msg = Twist()
+    for _ in range(3):
+        msg.linear.x = 0.0
+        msg.angular.z = 2.094  # 120 degrees
+        pub.publish(msg)
+        time.sleep(2)
+
+        msg.linear.x = 2.0
+        msg.angular.z = 0.0  # Move forward
+        pub.publish(msg)
+        time.sleep(2)
+
+def print_menu():
+    """Displays the menu options."""
+    print("\nOptions:")
+    print("C -> Square")
+    print("T -> Triangle")
+    print("Q -> Quit")
+
+def main():
+    rospy.init_node('turtle_shapes', anonymous=True)
+    pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+
+    print_menu()
+    kill_turtle("turtle1")  # Kill the current turtle if it exists
+
+    while not rospy.is_shutdown():
+        key = get_key()
+
+        if key == 'q':  
+            print("Exiting...")
+            break  
+
+        elif key == 'c':
+            spawn_turtle(4.0, 6.0, 0, "turtle1")  # Create at new position
+            draw_square(pub)
+            kill_turtle("turtle1")  # Kill after drawing
+            print_menu()
+
+        elif key == 't':
+            spawn_turtle(6.0, 2.0, 0, "turtle1")  # New turtle at another position
+            draw_triangle(pub)
+            kill_turtle("turtle1")  # Kill after drawing
+            print_menu()
+
+if __name__ == '__main__':
+    main()
+```
+#### *Explanation: dibujar.py*
+- get_key():
+
+    This function reads a key press from the user without requiring the user to press "Enter". It is implemented using termios to handle low-level terminal input.
+
+- kill_turtle(name):
+
+    This function sends a service request to /kill to delete a turtle from the simulator. It waits for the service to be available and then sends the Kill request with the turtle’s name.
+
+- spawn_turtle(x, y, theta, name):
+
+    This function creates a new turtle at the specified coordinates (x, y) and orientation theta. It uses the /spawn service, which requires the service to be available before sending the request.
+
+- draw_square(pub):
+
+    This function commands the turtle to draw a square. The turtle performs movements by publishing Twist messages to the /turtle1/cmd_vel topic. A Twist message controls both linear and angular velocities, where msg.linear.x controls forward speed, and msg.angular.z controls rotation. The turtle moves forward and then rotates by 90 degrees to form the square.
+
+- draw_triangle(pub):
+
+    Similar to the square, this function draws an equilateral triangle. It makes the turtle rotate 120 degrees and move forward to complete each side.
+
+- print_menu():
+
+    A simple menu system is provided, where the user can press keys to draw different shapes (square or triangle) or quit the program.
+
+This section focuses on teleoperation for controlling the turtle via keyboard inputs. The user can press different keys to control the turtle’s actions, which is an essential aspect of interacting with robots in real-time systems (Vasudevan, 2017). The main operations include:
+
+    Pressing 'C': This spawns a turtle and commands it to draw a square.
+
+    Pressing 'T': This spawns a turtle and commands it to draw a triangle.
+
+    Pressing 'Q': This quits the program.
+
 # Libraries Used
 # References
 - Quigley, M., Gerkey, B., & Smart, W. D. (2015). Programming Robots with ROS: A Practical Introduction to the Robot Operating System. O'Reilly Media.
@@ -122,3 +387,10 @@ The listener.py script is responsible for subscribing to the chatter topic and p
 - Siciliano, B., & Khatib, O. (2016). Springer Handbook of Robotics. Springer.
 
 - Khalil, H. K. (2002). Nonlinear Systems (3rd ed.). Prentice Hall.
+
+- ROS Wiki. (2025). Twist message. Retrieved from http://wiki.ros.org/geometry_msgs/msg/Twist
+
+- Cacace, J., & Meli, M. (2021). ROS for Robot Programming: Teleoperation and Navigation. Springer.
+
+- Vasudevan, R. (2017). Robotics: Teleoperation and Navigation in ROS. Springer.
+
