@@ -545,6 +545,36 @@ To improve performance, the PD and PID controllers are modifications of the same
 
 Since the PD and PID controllers only add additional gains (derivative and integral), their implementation follows the same structure as the P controller, with extra terms for error rate and error accumulation. Therefore, their code will not be analyzed separately, as it is fundamentally an extension of the Proportional (P) controller with additional adjustments.
 
+## Comparison of Controllers: P, PD, and PID
+
+To evaluate the performance of different controllers, a step response comparison was made between Proportional (P), Proportional-Derivative (PD), and Proportional-Integral-Derivative (PID) control strategies. The simulation was designed to mimic the behavior of the turtlebot used in the ROS environment. A second-order underdamped system was used to better visualize transient characteristics such as overshoot and oscillations.
+
+### Reference Input
+
+A unit step input was applied as the reference trajectory for all three controllers. The goal was to assess how each controller reacts to sudden changes in desired position and how accurately and quickly it reaches the target.
+
+### Controller P (Proportional)
+
+- **Behavior:** The P controller shows a moderately fast response with slight oscillations around the reference. However, it does not fully eliminate the steady-state error.
+- **Performance:** Due to the lack of integral action, it fails to reach the desired position precisely.
+- **Conclusion:** It is simple and reactive but lacks accuracy and exhibits steady-state error.
+
+### Controller PD (Proportional-Derivative)
+
+- **Behavior:** The PD controller responds more aggressively, with a higher overshoot and faster convergence than P. It reduces oscillations over time but still shows some steady-state error.
+- **Performance:** The derivative action helps predict future error trends and improves transient response.
+- **Conclusion:** Suitable when a faster response is needed, but still not ideal for steady-state accuracy.
+
+### Controller PID (Proportional-Integral-Derivative)
+
+- **Behavior:** The PID controller provides a smooth response with minimal overshoot and oscillation. It reaches the reference quickly and eliminates the steady-state error.
+- **Performance:** Combines fast reaction, error correction over time, and damping, resulting in the most balanced performance.
+- **Conclusion:** The PID controller delivers the best performance overall, making it ideal for precise and stable control in dynamic systems.
+
+### Final Observation
+
+Based on the graphical analysis, the PID controller is the most efficient in tracking the reference input accurately while maintaining system stability. This aligns with the practical behavior observed in the ROS simulations of the turtle’s motion using different control strategies.
+
 # Conclusion
 This report outlines a lab focused on learning ROS (Robot Operating System) and the implementation of basic to advanced control techniques for controlling a turtle in the turtlesim simulation environment. The key concepts discussed, such as ROS nodes, topics, publishers, subscribers, and control loops (P, PI, and PID), are fundamental to building autonomous robotic systems.
 
