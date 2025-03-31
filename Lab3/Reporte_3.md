@@ -43,9 +43,9 @@ $$
 
 Where:
 $$
-- ( v ) is the linear velocity.
-- ( \omega ) is the angular velocity.
-- ( K_p ) is the proportional gain (tuned manually).
+- $v$ is the linear velocity.
+- $\omega$ is the angular velocity.
+- $K_p$ is the proportional gain (tuned manually).
 $$
 
 
