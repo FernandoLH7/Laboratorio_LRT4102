@@ -174,9 +174,9 @@ if result:
 
 - Nevertheless, the code calculates and prints these values using the standard Euclidean formulas:
 
-$DTG = \sqrt{(x_{goal} - x_{current})^2 + (y_{goal} - y_{current})^2}$
+- $DTG = \sqrt{(x_{goal} - x_{current})^2 + (y_{goal} - y_{current})^2}$
 
-$ATG = \arctan2(y_{goal} - y_{current}, x_{goal} - x_{current})$
+- $ATG = \arctan2(y_{goal} - y_{current}, x_{goal} - x_{current})$
 
 ```python
 if __name__ == '__main__':
