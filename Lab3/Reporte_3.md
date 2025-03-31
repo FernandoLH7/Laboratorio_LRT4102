@@ -79,15 +79,112 @@ Since the turtle is spawned directly at the goal, both DTG and ATG are expected 
 
 #### Code Explanation
 
-- The user is prompted to input the goal position and angle (in degrees).
-- The angle is converted from degrees to radians.
-- The `/kill` service removes the original turtle.
-- The `/spawn` service creates a new turtle at the specified position and orientation.
-- The DTG and ATG are calculated using Euclidean formulas.
-- The ATG is then converted back to degrees and both values are printed.
+```python
+#!/usr/bin/env python3
 
-This code does not move the turtle—it simply performs geometric calculations and prints them to the console.
+import rospy
+from turtlesim.srv import Spawn, Kill
+import math
+```
+- #!/usr/bin/env python3: Specifies that the script should be run with Python 3.
 
+- rospy: ROS client library for Python; used to create nodes and interact with topics/services.
+
+- Spawn, Kill: Service definitions from the turtlesim package used to create or remove turtles.
+
+- math: Python module for mathematical functions (e.g., radians, degrees, sqrt, atan2).
+
+```python
+def kill_turtle(name):
+    rospy.wait_for_service('/kill')
+    try:
+        kill = rospy.ServiceProxy('/kill', Kill)
+        kill(name)
+    except rospy.ServiceException:
+        rospy.logwarn(f"No se pudo eliminar {name}, probablemente ya fue eliminada.")
+```
+- Waits for the /kill service to become available.
+
+- Creates a service proxy to call /kill and attempts to remove a turtle with the given name.
+
+- If the turtle doesn't exist, it logs a warning.
+
+```python
+def spawn_turtle(x, y, theta_deg, name):
+    rospy.wait_for_service('/spawn')
+    try:
+        theta_rad = math.radians(theta_deg)  # Convert degrees to radians
+        spawn = rospy.ServiceProxy('/spawn', Spawn)
+        spawn(x, y, theta_rad, name)
+        return x, y, theta_rad
+    except rospy.ServiceException as e:
+        rospy.logerr(f"Error al crear la tortuga: {e}")
+        return None
+```
+- Waits for the /spawn service.
+
+- Converts the input angle theta_deg from degrees to radians, since ROS expects radians.
+
+- Calls the /spawn service with the provided coordinates and name.
+
+- Returns the coordinates and orientation of the new turtle.
+
+```python
+def main():
+    rospy.init_node('turtle_spawn_goal', anonymous=True)
+```
+- Initializes a new ROS node named turtle_spawn_goal.
+
+```python
+x_goal = float(input("Ingresa la coordenada x del goal: "))
+    y_goal = float(input("Ingresa la coordenada y del goal: "))
+    theta_goal_deg = float(input("Ingresa el ángulo theta del goal (en grados): "))
+```
+- Prompts the user to input the goal position (x, y) and orientation theta in degrees.
+
+```python
+kill_turtle("turtle1")
+```
+- Removes the default turtle (turtle1) if it's present.
+
+```python
+result = spawn_turtle(x_goal, y_goal, theta_goal_deg, "turtle1")
+```
+- Creates a new turtle at the user-specified position and orientation.
+
+```python
+if result:
+        x_current, y_current, theta_current = result
+
+        # Calculate Distance to Goal (DTG)
+        dtg = math.sqrt((x_goal - x_current)**2 + (y_goal - y_current)**2)
+
+        # Calculate Angle to Goal (ATG)
+        atg_rad = math.atan2((y_goal - y_current), (x_goal - x_current))
+        atg_deg = math.degrees(atg_rad)
+
+        print(f"\nDistance to Goal (DTG): {dtg:.4f}")
+        print(f"Angle to Goal (ATG): {atg_deg:.4f}°")
+```
+- Because the turtle is spawned at the goal, the position difference is 0, resulting in:
+
+    DTG = 0.0
+
+    ATG = 0.0°
+
+- Nevertheless, the code calculates and prints these values using the standard Euclidean formulas:
+
+$DTG = \sqrt{(x_{goal} - x_{current})^2 + (y_{goal} - y_{current})^2}$
+
+$ATG = \arctan2(y_{goal} - y_{current}, x_{goal} - x_{current})$
+
+```python
+if __name__ == '__main__':
+    main()
+```
+- Ensures the script runs the main() function when executed directly (not when imported as a module).
+
+This script is useful for initializing a turtle's position at a specific goal and for verifying positional logic by computing DTG and ATG. It's especially helpful as a debugging tool before implementing motion control systems.
 ---
 
 ### Problem 2: Move Turtle to Goal using Proportional Controller
@@ -105,17 +202,6 @@ This is done in an **infinite loop**, allowing repeated control sessions.
 
 #### Code Explanation
 
-- The node subscribes to `/turtle1/pose` to obtain real-time pose updates.
-- The user is asked to input the target x, y, and theta (in degrees).
-- The controller continuously calculates:
-  - The Euclidean distance to the goal.
-  - The desired heading angle.
-  - The angular difference between the current heading and the desired heading.
-- A linear velocity proportional to the distance, and an angular velocity proportional to the heading error are published to `/turtle1/cmd_vel`.
-- Once the turtle is within a small threshold of the goal, it stops.
-- Then, a separate rotation phase aligns the turtle with the desired final orientation using angular velocity only.
-
-This is wrapped inside a loop, allowing the user to input multiple targets without restarting the program.
 
 ---
 
