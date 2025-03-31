@@ -24,9 +24,9 @@ $$
 
 To find the **Angle To Goal (ATG)**, which represents the angle between the current heading and the line toward the goal, we use:
 
-\[
+$$
 ATG = \arctan2(y_{goal} - y_{current}, x_{goal} - x_{current})
-\]
+$$
 
 This angle must be adjusted to match the orientation system used in Turtlesim (measured in radians or degrees) (Siciliano & Khatib, 2016).
 
@@ -37,14 +37,16 @@ A proportional controller adjusts the control effort proportionally to the error
 - The **linear velocity** is proportional to the distance to the goal.
 - The **angular velocity** is proportional to the difference between the current orientation and the angle to the goal.
 
-\[
+$$
 v = K_p \cdot DTG,\quad \omega = K_p \cdot (ATG - \theta_{current})
-\]
+$$
 
 Where:
+$$
 - \( v \) is the linear velocity.
 - \( \omega \) is the angular velocity.
 - \( K_p \) is the proportional gain (tuned manually).
+$$
 
 This controller is a fundamental feedback control strategy, widely used in mobile robotics for trajectory following and pose regulation (Corke, 2017).
 
