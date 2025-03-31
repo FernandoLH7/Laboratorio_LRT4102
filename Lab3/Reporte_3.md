@@ -1,5 +1,4 @@
-# TurtleSim Lab Report 3 
-
+# TurtleSim Lab Report 3
 ## Introduction
 
 In this laboratory session, we explored the basic concepts of position control using the ROS (Robot Operating System) environment with the Turtlesim simulator. The focus was on implementing two main functionalities:
