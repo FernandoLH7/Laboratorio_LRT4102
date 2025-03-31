@@ -42,12 +42,10 @@ v = K_p \cdot DTG,\quad \omega = K_p \cdot (ATG - \theta_{current})
 $$
 
 Where:
-$$
+
 - $v$ is the linear velocity.
 - $\omega$ is the angular velocity.
 - $K_p$ is the proportional gain (tuned manually).
-$$
-
 
 This controller is a fundamental feedback control strategy, widely used in mobile robotics for trajectory following and pose regulation (Corke, 2017).
 
