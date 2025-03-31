@@ -18,9 +18,9 @@ This experiment provided hands-on experience with real-time control and coordina
 
 Euclidean coordinates allow us to determine the spatial relationship between two points in a 2D plane. To compute the **Distance To Goal (DTG)**, we use the Euclidean distance formula:
 
-\[
+$$
 DTG = \sqrt{(x_{goal} - x_{current})^2 + (y_{goal} - y_{current})^2}
-\]
+$$
 
 To find the **Angle To Goal (ATG)**, which represents the angle between the current heading and the line toward the goal, we use:
 
@@ -62,7 +62,7 @@ The standard message types `geometry_msgs/Twist` and `turtlesim/Pose` facilitate
 
 ## Problems to Solve
 
-### 🐢 Problem 1: Calculate and Show DTG & ATG, Spawn Turtle at Goal
+### Problem 1: Calculate and Show DTG & ATG, Spawn Turtle at Goal
 
 #### Problem Description
 
@@ -87,7 +87,7 @@ This code does not move the turtle—it simply performs geometric calculations a
 
 ---
 
-### 🐢 Problem 2: Move Turtle to Goal using Proportional Controller
+### Problem 2: Move Turtle to Goal using Proportional Controller
 
 #### Problem Description
 
