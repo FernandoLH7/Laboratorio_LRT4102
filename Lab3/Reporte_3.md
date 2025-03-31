@@ -182,9 +182,7 @@ $ATG = \arctan2(y_{goal} - y_{current}, x_{goal} - x_{current})$
 if __name__ == '__main__':
     main()
 ```
-- Ensures the script runs the main() function when executed directly (not when imported as a module).
-
-This script is useful for initializing a turtle's position at a specific goal and for verifying positional logic by computing DTG and ATG. It's especially helpful as a debugging tool before implementing motion control systems.
+- Ensures the script runs the main() function when executed directly (not when imported as a module). This script is useful for initializing a turtle's position at a specific goal and for verifying positional logic by computing DTG and ATG. It's especially helpful as a debugging tool before implementing motion control systems.
 ---
 
 ### Problem 2: Move Turtle to Goal using Proportional Controller
