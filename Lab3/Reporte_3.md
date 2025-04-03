@@ -387,6 +387,10 @@ if __name__ == '__main__':
 - This code demonstrates a fully functional position and orientation control system for a Turtlesim robot using proportional control. It combines real-time pose tracking, user interaction, Euclidean distance calculation, and angle normalization to achieve precise turtle movement in a simulation.
 ---
 
+## Velocity Mapping and Error-to-Command Translation
+
+To ensure the turtle moves effectively toward the target, it is necessary to map the position errors both in distance and orientation into velocity commands. This mapping transforms the spatial differences into actionable motion through a proportional control law. The linear velocity v is assigned based on the Distance to Goal (DTG), causing the turtle to move faster when it's farther from the goal and to slow down smoothly as it approaches. Similarly, the angular velocity ω depends on the difference between the turtle's current heading and the Angle to Goal (ATG), allowing it to rotate toward the target direction. This mapping ensures that motion remains stable and responsive, avoiding abrupt movements. The proportional constants Kp and Kθ serve as gains that control how aggressively the turtle reacts to these errors. Fine tuning these gains is crucial to achieving both precision and smoothness in the trajectory.
+
 ## Conclusions
 
 This laboratory provided practical experience with coordinate geometry and control systems using ROS and Turtlesim. We successfully implemented two control strategies:
